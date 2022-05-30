@@ -1,10 +1,10 @@
-import AboutMe from "./pages/AboutMe";
 import { Link } from "react-router-dom";
-import Logo from "./images/logo.jpeg";
-import "./App.css";
+import Logo from "../images/logo.jpeg";
+import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BsInstagram, BsGithub, BsLinkedin } from "react-icons/bs";
 import { SiGmail } from "react-icons/si";
+import Svg from "../components/Svg";
 
 function App() {
   return (
@@ -28,12 +28,12 @@ function App() {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="">
                   <BsLinkedin />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="">
                   <SiGmail />
                 </a>
               </li>
@@ -57,7 +57,10 @@ function App() {
             </ul>
           </div>
           <div className="content">
-            <AboutMe />
+            <div className="skills-content h-100">
+              <span className="tablee ">SKILLS</span>
+              <Svg />
+            </div>
           </div>
         </div>
       </div>

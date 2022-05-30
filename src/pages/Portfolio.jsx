@@ -1,12 +1,24 @@
-import AboutMe from "./pages/AboutMe";
-import { Link } from "react-router-dom";
-import Logo from "./images/logo.jpeg";
-import "./App.css";
+import Logo from "../images/logo.jpeg";
+import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BsInstagram, BsGithub, BsLinkedin } from "react-icons/bs";
 import { SiGmail } from "react-icons/si";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [data, setData] = useState([]);
+  const base_url = "http://localhost:1337";
+  const getPortfolio = async () => {
+    const res = await fetch(
+      "http://localhost:1337/api/portfolios?populate=PortfolioImage"
+    );
+    const response = await res.json();
+    console.log(response.data);
+    setData(response.data);
+  };
+  useEffect(() => {
+    getPortfolio();
+  }, []);
   return (
     <div className="App d-flex">
       <div className="dark">
@@ -57,7 +69,20 @@ function App() {
             </ul>
           </div>
           <div className="content">
-            <AboutMe />
+            <span className="tablee ">PORTFOLIO</span>
+            <div className="portfolio-content">
+              {/* <img src={`http://localhost:1337/api` + { images }} alt="" /> */}
+              {data.map((item) => (
+                <img
+                  className="img"
+                  src={
+                    base_url +
+                    item.attributes.PortfolioImage.data.attributes.url
+                  }
+                  alt=""
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
